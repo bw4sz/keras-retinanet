@@ -176,4 +176,8 @@ def resize_image(img, min_side=400, max_side=1333):
     # resize the image with the computed scale
     img = cv2.resize(img, None, fx=scale, fy=scale)
     
+    #TODO if one channel
+    if len(img.shape) is not 3:
+        img = np.expand_dims(img, 2)
+    
     return img, scale
