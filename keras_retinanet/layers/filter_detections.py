@@ -24,9 +24,9 @@ def filter_detections(
     other                 = [],
     class_specific_filter = True,
     nms                   = True,
-    score_threshold       = 0.05,
+    score_threshold       = 0.2,
     max_detections        = 300,
-    nms_threshold         = 0.5
+    nms_threshold         = 0.1
 ):
     """ Filter detections using the boxes and classification values.
 
@@ -120,8 +120,8 @@ class FilterDetections(keras.layers.Layer):
         self,
         nms                   = True,
         class_specific_filter = True,
-        nms_threshold         = 0.5,
-        score_threshold       = 0.05,
+        nms_threshold         = 0.1,
+        score_threshold       = 0.2,
         max_detections        = 300,
         parallel_iterations   = 32,
         **kwargs
