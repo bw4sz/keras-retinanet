@@ -26,11 +26,12 @@ class Evaluate(keras.callbacks.Callback):
         self,
         generator,
         iou_threshold=0.5,
-        score_threshold=0.05,
-        max_detections=100,
+        score_threshold=0.15,
+        max_detections=200,
         save_path=None,
         tensorboard=None,
         weighted_average=False,
+        comet_experiment=None,
         verbose=1
     ):
         """ Evaluate a given dataset using a given model at the end of every epoch during training.
@@ -43,6 +44,7 @@ class Evaluate(keras.callbacks.Callback):
             save_path        : The path to save images with visualized detections to.
             tensorboard      : Instance of keras.callbacks.TensorBoard used to log the mAP value.
             weighted_average : Compute the mAP using the weighted average of precisions among classes.
+            comet_experiment: A cometml class to log images
             verbose          : Set the verbosity level, by default this is set to 1.
         """
         self.generator       = generator
@@ -51,6 +53,7 @@ class Evaluate(keras.callbacks.Callback):
         self.max_detections  = max_detections
         self.save_path       = save_path
         self.tensorboard     = tensorboard
+        self.comet_experiment = comet_experiment
         self.weighted_average = weighted_average
         self.verbose         = verbose
 
@@ -66,7 +69,8 @@ class Evaluate(keras.callbacks.Callback):
             iou_threshold=self.iou_threshold,
             score_threshold=self.score_threshold,
             max_detections=self.max_detections,
-            save_path=self.save_path
+            save_path=self.save_path,
+            comet_experiment=self.comet_experiment
         )
 
         # compute per class average precision
