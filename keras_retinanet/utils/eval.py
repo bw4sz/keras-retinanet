@@ -154,7 +154,7 @@ def evaluate(
     generator,
     model,
     iou_threshold=0.5,
-    score_threshold=0.2,
+    score_threshold=0.15,
     max_detections=100,
     save_path=None,
     comet_experiment=None
@@ -235,6 +235,10 @@ def evaluate(
         # compute recall and precision
         recall    = true_positives / num_annotations
         precision = true_positives / np.maximum(true_positives + false_positives, np.finfo(np.float64).eps)
+        
+        #log recall and precision
+        comet_experiment.log_metric("Benchmark Recall", recall)
+        comet_experiment.log_metric("Benchmark Precision", precision)
 
         # compute average precision
         average_precision  = _compute_ap(recall, precision)

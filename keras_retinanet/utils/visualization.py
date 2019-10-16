@@ -59,7 +59,7 @@ def draw_boxes(image, boxes, color, thickness=1):
         draw_box(image, b, color, thickness=thickness)
 
 
-def draw_detections(image, boxes, scores, labels, color=(0, 0, 0), label_to_name=None, score_threshold=0.2):
+def draw_detections(image, boxes, scores, labels, color=(0, 0, 0), label_to_name=None, score_threshold=0.15):
     """ Draws detections in an image.
 
     # Arguments
