@@ -110,7 +110,8 @@ def _get_detections(generator, model, score_threshold=0.15, max_detections=100, 
             
             #Log image
             if comet_experiment:
-                comet_experiment.log_image(image_path)
+                image_name=generator.image_names[i]                        
+                comet_experiment.log_image(image_path, image_name)
 
         # copy detections to all_detections
         for label in range(generator.num_classes()):
