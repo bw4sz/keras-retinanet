@@ -55,7 +55,7 @@ def _compute_ap(recall, precision):
     return ap
 
 
-def _get_detections(generator, model, score_threshold=0.15, max_detections=100, save_path=None, comet_experiment=None):
+def _get_detections(generator, model, score_threshold=0.05, max_detections=100, save_path=None, comet_experiment=None):
     """ Get the detections from the model using the generator.
 
     The result is a list of lists such that the size is:
@@ -237,8 +237,9 @@ def evaluate(
         precision = true_positives / np.maximum(true_positives + false_positives, np.finfo(np.float64).eps)
         
         #log recall and precision
-        comet_experiment.log_metric("Benchmark Recall", recall)
-        comet_experiment.log_metric("Benchmark Precision", precision)
+        if comet_experiment:
+            comet_experiment.log_metric("Benchmark Recall", recall)
+            comet_experiment.log_metric("Benchmark Precision", precision)
 
         # compute average precision
         average_precision  = _compute_ap(recall, precision)
