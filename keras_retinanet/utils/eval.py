@@ -110,7 +110,7 @@ def _get_detections(generator, model, score_threshold=0.05, max_detections=100, 
             
             #Log image
             if comet_experiment:
-                image_name=generator.image_names[i]                        
+                image_name = generator.image_names[i]                        
                 comet_experiment.log_image(image_path, image_name)
 
         # copy detections to all_detections
@@ -154,7 +154,7 @@ def evaluate(
     generator,
     model,
     iou_threshold=0.5,
-    score_threshold=0.15,
+    score_threshold=0.05,
     max_detections=100,
     save_path=None,
     comet_experiment=None
