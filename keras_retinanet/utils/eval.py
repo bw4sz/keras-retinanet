@@ -238,6 +238,7 @@ def evaluate(
         
         #log recall and precision
         if comet_experiment:
+            print("Logging Recall")
             comet_experiment.log_metric("Benchmark Recall", recall)
             comet_experiment.log_metric("Benchmark Precision", precision)
 
