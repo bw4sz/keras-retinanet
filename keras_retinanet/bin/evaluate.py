@@ -176,6 +176,5 @@ def main(args=None):
         print('mAP: {:.4f}'.format(sum(precisions) / sum(x > 0 for x in total_instances)))
         
 
-
 if __name__ == '__main__':
     main()
