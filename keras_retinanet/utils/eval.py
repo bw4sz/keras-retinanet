@@ -240,8 +240,8 @@ def evaluate(
         if comet_experiment:
             print("Logging Recall at score threshold {}".format(score_threshold))
             comet_experiment.log_parameter("score_threshold", score_threshold)
-            comet_experiment.log_metric("IoU_Recall", np.max(recall))
-            comet_experiment.log_metric("IoU_Precision", np.max(precision))
+            comet_experiment.log_metric("IoU_Recall", recall[-1])
+            comet_experiment.log_metric("IoU_Precision", precision[-1])
 
         # compute average precision
         average_precision  = _compute_ap(recall, precision)
